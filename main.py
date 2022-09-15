@@ -48,7 +48,7 @@ for country in ('english', 'french', 'deutsch', 'japanese', 'korean'):
     iterations = [name for name in data[country]]
     names_id.append(iterations)
 
-for pokemon in range(1, 4):  # Number of pokemon added in my JSON file
+for pokemon in range(1, 899):  # Number of pokemon added in my JSON file
     #   Connect to pokemonshowdown website to get data
     url = f'https://dex.pokemonshowdown.com/pokemon/{names_id[0][pokemon - 1]}'
     service = Service()
