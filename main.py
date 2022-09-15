@@ -157,16 +157,16 @@ for pokemon in range(1, 4):  # Number of pokemon added in my JSON file
     ],
     "abilities": {
       "learned_by_level": [
-        [i for i in moves_lvl]
+        # [i for i in moves_lvl]
       ],
       "learned_by_tm": [
-        [i for i in moves_tm]
+        # [i for i in moves_tm]
       ]
     },
     "images": {
       "mini": "",
-      "normal": f'img/{pokemon}.png',
-      "normal_shiny": f'img/shiny/{pokemon}.png',
+      "normal": # f'img/{pokemon}.png',
+      "normal_shiny": # f'img/shiny/{pokemon}.png',
       "gif": ""
     }
   }
