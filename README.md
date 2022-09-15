@@ -2,6 +2,7 @@
 
 I wish to create a GUI to display pokemon data, using Python (Kivy) and JSON file to store data.
 I have already made a script that can reach some website to get data and append it to a JSON file.
+
 Next steps:
   - Work to make a new script that can download images and store them in a file, to finally add the path to the DB (JSON).
   - Optimize my current code and implement function.
