@@ -5,8 +5,8 @@ import re, json
 import sys
 
 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-###                                                                                             ###
-###    Work in progress, it works but I have to implement function instead of a simple script   ###
+###        To make it works for you add a JSON file in path line 177                            ###
+###    Work in progress, I have to implement function instead of a simple script                ###
 ###          credits:                                                                           ###
 ###              https://github.com/sindresorhus/pokemon                                        ###
 ###              https://pokemondb.net/                                                         ###
