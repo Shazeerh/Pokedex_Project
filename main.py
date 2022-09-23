@@ -2,11 +2,12 @@ from bs4 import BeautifulSoup as bs
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 import re, json
+from pathlib import Path
 import sys
 
 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-###        To make it works for you add a JSON file in path line 177                            ###
-###    Work in progress, I have to implement function instead of a simple script                ###
+###                                                                                             ###
+###    Work in progress, it works but I have to implement function instead of a simple script   ###
 ###          credits:                                                                           ###
 ###              https://github.com/sindresorhus/pokemon                                        ###
 ###              https://pokemondb.net/                                                         ###
@@ -44,11 +45,11 @@ with open('names_json.json', 'r', encoding="utf8") as f:
 
 #   Get all names (english, french, japanese, deutsch) from JSON file
 names_id = []
-for country in ('english', 'french', 'deutsch', 'japanese', 'korean'):
+for country in ('english', 'french', 'japanese', 'korean'):
     iterations = [name for name in data[country]]
     names_id.append(iterations)
 
-for pokemon in range(1, 899):  # Number of pokemon added in my JSON file
+for pokemon in range(1, 2):  # Number of pokemon added in my JSON file
     #   Connect to pokemonshowdown website to get data
     url = f'https://dex.pokemonshowdown.com/pokemon/{names_id[0][pokemon - 1]}'
     service = Service()
@@ -126,9 +127,8 @@ for pokemon in range(1, 899):  # Number of pokemon added in my JSON file
   "name": {
     "english": names_id[0][pokemon - 1],
     "french": names_id[1][pokemon - 1],
-    "deutsch": names_id[2][pokemon - 1],
-    "japanese": names_id[3][pokemon - 1],
-    "korean": names_id[4][pokemon - 1]
+    "japanese": names_id[2][pokemon - 1],
+    "korean": names_id[3][pokemon - 1]
   },
   "type": [
     type1,
@@ -146,35 +146,38 @@ for pokemon in range(1, 899):  # Number of pokemon added in my JSON file
     "slot1": [
       {
         "name": ability1,
-        "effect": ability_list[ability1]
+        "effect": ability_list[ability1] if ability1 in ability_list else None
       }
     ],
     "slot2": [
       {
         "name": ability2,
-        "effect": ability_list[ability2]
+        "effect": ability_list[ability2] if ability2 in ability_list else None
       }
     ],
     "abilities": {
       "learned_by_level": [
-        # [i for i in moves_lvl]
+        [i for i in moves_lvl]
       ],
       "learned_by_tm": [
-        # [i for i in moves_tm]
+        [i for i in moves_tm]
       ]
     },
     "images": {
       "mini": "",
-      "normal": # f'img/{pokemon}.png',
-      "normal_shiny": # f'img/shiny/{pokemon}.png',
+      "normal": f'img/{pokemon}.png',
+      "normal_shiny": f'img/shiny/{pokemon}.png',
       "gif": ""
     }
   }
 }
     listOjb.append(new_entry)
     print('Data added for:', names_id[0][pokemon - 1]) # Print success
-    
-with open('pokemon_db.json', 'a') as db: # JSON file database
+
+
+json_path = Path('pokemon_db.json')
+json_path.touch(exist_ok=True)
+with open(json_path, 'a') as db: # JSON file database
     db.write(json.dumps(listOjb, indent=4, separators=(',', ': '))) # Write data, using indent
     db.close()
         
